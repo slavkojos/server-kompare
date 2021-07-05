@@ -34,7 +34,11 @@ mongoose
   })
   .then(
     server.listen(port, () => {
-      console.log("Running on port", port);
+      if (process.env.NODE_ENV !== "production") {
+        console.log("Running local on port", port);
+      } else {
+        console.log("Running in cloud on port", port);
+      }
     })
   )
   .catch((err) => console.log(err));
